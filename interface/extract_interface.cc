@@ -138,7 +138,7 @@ static bool is_exported(Decl *decl)
 {
 	if (isa<FunctionDecl>(decl)) {
 	FunctionDecl *FDecl = cast<FunctionDecl>(decl);
-	std::string N = FDecl->getName();
+	std::string N = FDecl->getNameAsString();
 
 	// deprecated, renamed to *_intersect/subtract_<type> 
 	if (N == "isl_union_map_intersect_domain" ||

@@ -1026,7 +1026,7 @@ void cpp_generator::print_method_return(ostream &os, const isl_class &clazz,
 void cpp_generator::print_method_impl(ostream &os, const isl_class &clazz,
 	FunctionDecl *method, function_kind kind)
 {
-	string methodname = method->getName();
+	string methodname = method->getNameAsString();
 	int num_params = method->getNumParams();
 
 	print_method_header(os, clazz, method, false, kind);
