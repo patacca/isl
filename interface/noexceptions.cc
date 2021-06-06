@@ -360,7 +360,6 @@ void cpp_generator::print_ptr_decl(ostream &os, const isl_class &clazz)
 	osprintf(os, "  inline __isl_keep %s *get() const;\n", name);
 	osprintf(os, "  inline __isl_give %s *release();\n", name);
 	osprintf(os, "  inline bool is_null() const;\n");
-	osprintf(os, "  inline explicit operator bool() const;\n", name);
 }
 
 /* Print the declaration of the get_ctx method.
@@ -643,9 +642,6 @@ void cpp_generator::print_ptr_impl(ostream &os, const isl_class &clazz)
 	osprintf(os, "}\n\n");
 	osprintf(os, "bool %s::is_null() const {\n", cppname);
 	osprintf(os, "  return ptr == nullptr;\n");
-	osprintf(os, "}\n");
-	osprintf(os, "%s::operator bool() const {\n", cppname);
-	osprintf(os, "  return !is_null();\n");
 	osprintf(os, "}\n\n");
 }
 
