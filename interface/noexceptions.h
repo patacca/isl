@@ -43,7 +43,6 @@ private:
 	void print_destructor_decl(ostream &os, const isl_class &clazz);
 	void print_ptr_decl(ostream &os, const isl_class &clazz);
 	void print_get_ctx_decl(ostream &os);
-	void print_str_decl(ostream &os, const isl_class &clazz);
 	void print_dump_decl(ostream &os, const isl_class &clazz);
 	void print_methods_decl(ostream &os, const isl_class &clazz);
 	void print_method_group_decl(ostream &os, const isl_class &clazz,
@@ -67,7 +66,6 @@ private:
 	void print_destructor_impl(ostream &os, const isl_class &clazz);
 	void print_ptr_impl(ostream &os, const isl_class &clazz);
 	void print_get_ctx_impl(ostream &os, const isl_class &clazz);
-	void print_str_impl(ostream &os, const isl_class &clazz);
 	void print_dump_impl(ostream &os, const isl_class &clazz);
 	void print_methods_impl(ostream &os, const isl_class &clazz);
 	void print_method_group_impl(ostream &os, const isl_class &clazz,
