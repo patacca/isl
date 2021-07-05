@@ -255,7 +255,8 @@ static bool is_exported(Decl *decl)
 		N.find("free") == std::string::npos &&
 		N.find("delete") == std::string::npos &&
 		N.find("print") == std::string::npos &&
-		N.find("2exp") == std::string::npos);
+		N.find("2exp") == std::string::npos &&
+		N.find("isl_union_set_add_set") == std::string::npos);
 	}
 	return has_annotation(decl, "isl_export");
 }
