@@ -365,7 +365,7 @@ void cpp_generator::print_ptr_decl(ostream &os, const isl_class &clazz)
  */
 void cpp_generator::print_get_ctx_decl(ostream &os)
 {
-	osprintf(os, "  inline ctx get_ctx() const;\n");
+	osprintf(os, "  inline isl::ctx ctx() const;\n");
 }
 
 void cpp_generator::print_dump_decl(ostream &os, const isl_class &clazz)
@@ -644,8 +644,8 @@ void cpp_generator::print_get_ctx_impl(ostream &os, const isl_class &clazz)
 	std::string cppstring = type2cpp(clazz);
 	const char *cppname = cppstring.c_str();
 
-	osprintf(os, "ctx %s::get_ctx() const {\n", cppname);
-	osprintf(os, "  return ctx(%s_get_ctx(ptr));\n", name);
+	osprintf(os, "isl::ctx %s::ctx() const {\n", cppname);
+	osprintf(os, "  return isl::ctx(%s_get_ctx(ptr));\n", name);
 	osprintf(os, "}\n");
 }
 
@@ -826,7 +826,7 @@ void cpp_generator::print_save_ctx(ostream &os, FunctionDecl *method,
 	if (checked)
 		return;
 	if (kind == function_kind_member_method) {
-		osprintf(os, "  auto ctx = get_ctx();\n");
+		osprintf(os, "  auto ctx = ctx();\n");
 		return;
 	}
 	if (is_isl_ctx(type)) {
@@ -844,7 +844,7 @@ void cpp_generator::print_save_ctx(ostream &os, FunctionDecl *method,
 
 		if (!is_isl_type(type))
 			continue;
-		osprintf(os, "  auto ctx = %s.get_ctx();\n",
+		osprintf(os, "  auto ctx = %s.ctx();\n",
 			param->getName().str().c_str());
 		return;
 	}
