@@ -1077,7 +1077,7 @@ void cpp_generator::print_method_header(ostream &os, const isl_class &clazz,
 	FunctionDecl *method, bool is_declaration, function_kind kind)
 {
 	string cname = clazz.base_method_name(method);
-	string rettype_str = type2cpp(method->getReturnType());
+	string rettype_str = type2cpp_with_namespace(method->getReturnType());
 	string classname = type2cpp(clazz);
 	int num_params = method->getNumParams();
 	int first_param = 0;
@@ -1118,7 +1118,7 @@ void cpp_generator::print_method_header(ostream &os, const isl_class &clazz,
 	for (int i = first_param; i < num_params; ++i) {
 		ParmVarDecl *param = method->getParamDecl(i);
 		QualType type = param->getOriginalType();
-		string cpptype = type2cpp(type);
+		string cpptype = type2cpp_with_namespace(type);
 
 		if (is_callback(type))
 			num_params--;
@@ -1428,6 +1428,14 @@ string cpp_generator::type2cpp(QualType type)
 	return "void *";
 
 	die("Cannot convert type to C++ type");
+}
+
+string cpp_generator::type2cpp_with_namespace(QualType type)
+{
+	if (is_isl_type(type))
+		return "isl::" + type2cpp(type->getPointeeType().getAsString());
+	
+	return type2cpp(type);
 }
 
 /* Check if "subclass_type" is a subclass of "class_type".
