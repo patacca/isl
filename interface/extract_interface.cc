@@ -168,6 +168,10 @@ static bool is_exported(Decl *decl)
 		N.find("from_domain_and_range") != std::string::npos)
 		return true;
 
+	if (N.find("isl_union_map_empty") != std::string::npos ||
+		N.find("isl_union_set_empty") != std::string::npos)
+		return has_annotation(decl, "isl_export");
+
 	return (N.find("dump") == std::string::npos &&
 		N.find("get_ctx") == std::string::npos &&
 		N.find("stride_info") == std::string::npos &&
@@ -256,7 +260,9 @@ static bool is_exported(Decl *decl)
 		N.find("delete") == std::string::npos &&
 		N.find("print") == std::string::npos &&
 		N.find("2exp") == std::string::npos &&
-		N.find("isl_union_set_add_set") == std::string::npos);
+		N.find("isl_union_set_add_set") == std::string::npos &&
+		N.find("isl_union_map_empty_space") == std::string::npos &&
+		N.find("isl_union_set_empty_space") == std::string::npos);
 	}
 	return has_annotation(decl, "isl_export");
 }
