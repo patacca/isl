@@ -261,6 +261,7 @@ static bool is_exported(Decl *decl)
 		N.find("print") == std::string::npos &&
 		N.find("2exp") == std::string::npos &&
 		N.find("isl_union_set_add_set") == std::string::npos &&
+		N.find("isl_union_map_add_map") == std::string::npos &&
 		N.find("isl_union_map_empty_space") == std::string::npos &&
 		N.find("isl_union_set_empty_space") == std::string::npos);
 	}
