@@ -7,6 +7,12 @@ This is used to generate the isl-noexceptions.h used in Polly. Use
   
 to re-generate it. Other interfaces are not supposed to work in this branch.
 
+You can also build it with docker
+
+  docker build -t islnoexceptions .
+  docker run --name islnoexceptions_container islnoexceptions
+  docker cp islnoexceptions_container:/isl/include/isl/isl-noexceptions.h ./isl-noexceptions.h
+
 
 isl
 ===
