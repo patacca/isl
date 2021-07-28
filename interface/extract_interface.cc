@@ -264,7 +264,9 @@ static bool is_exported(Decl *decl)
 		N.find("isl_union_map_add_map") == std::string::npos &&
 		N.find("isl_union_map_empty_space") == std::string::npos &&
 		N.find("isl_set_lex_le_set") == std::string::npos &&
-		N.find("isl_union_set_empty_space") == std::string::npos);
+		N.find("isl_union_set_empty_space") == std::string::npos &&
+		N.find("isl_val_sub_ui") == std::string::npos &&
+		N.find("isl_val_add_ui") == std::string::npos);
 	}
 	return has_annotation(decl, "isl_export");
 }
